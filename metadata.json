@@ -1,0 +1,6 @@
+{
+  "name": "جي ميوزك",
+  "description": "مشغل موسيقى متطور يدعم كل صيغ الصوت والموسيقى مع موازن صوت ذكي ومؤقت للنوم",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
