@@ -8,18 +8,17 @@ plugins {
 
 android {
     namespace = "com.example"
-    compileSdk { version = release(36) { minorApiLevel = 1 } }
+    compileSdk = 35 // تم تعديلها لتجنب مشاكل استدعاء دوال الإصدارات التجريبية
 
     defaultConfig {
         applicationId = "com.aistudio.gmusic.pknqtw"
         minSdk = 24
-        targetSdk = 36
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         
-        // منع الـ Deep Links والـ Navigation component من التسبب في أي أخطاء أثناء البناء السحابي
         manifestPlaceholders["navArgsPlugin.skip"] = "true"
     }
 
@@ -31,12 +30,6 @@ android {
             keyAlias = "upload"
             keyPassword = System.getenv("KEY_PASSWORD")
         }
-        create("debugConfig") {
-            storeFile = file("${rootDir}/debug.keystore")
-            storePassword = "android"
-            keyAlias = "androiddebugkey"
-            keyPassword = "android"
-        }
     }
 
     buildTypes {
@@ -47,7 +40,8 @@ android {
             signingConfig = signingConfigs.getByName("release")
         }
         debug {
-            signingConfig = signingConfigs.getByName("debugConfig")
+            // هنا الحل: نخليه يستخدم التوقيع الافتراضي المدمج بالـ SDK تلقائياً وبدون ملف خارجي
+            signingConfig = signingConfigs.getByName("debug")
         }
     }
 
