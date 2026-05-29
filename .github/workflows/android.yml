@@ -21,8 +21,8 @@ jobs:
     - name: Setup Gradle
       uses: gradle/actions/setup-gradle@v4
 
-    - name: Build Debug APK (Skip Tests)
-      run: gradle assembleDebug -x test -x testDebugUnitTest --no-daemon --stacktrace
+    - name: Build Debug APK (Skip All Blocks)
+      run: gradle assembleDebug -x test -x testDebugUnitTest -Pandroid.navArgsPlugin.skip=true --no-daemon --stacktrace
       env:
         GRADLE_OPTS: "-Dorg.gradle.jvmargs=-Xmx2048m -XX:MaxMetaspaceSize=512m"
 
